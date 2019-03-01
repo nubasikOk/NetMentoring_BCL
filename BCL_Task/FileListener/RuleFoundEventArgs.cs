@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace FileListener
 {
-    class RuleFountEventsArgs
+    class RuleFoundEventArgs
     {
         public Regex Rule { get; set; }
         public string PathToMove { get; set; }
