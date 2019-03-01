@@ -6,6 +6,6 @@ namespace FileListener
 {
     public class FileListener
     {
-        public
+        
     }
 }
