@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterService.Console", "BCL_Task\SorterService.Console.csproj", "{A31F1840-16CC-45DA-A9BB-BF97B299BA75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterService.ConsoleApp", "BCL_Task\SorterService.ConsoleApp.csproj", "{A31F1840-16CC-45DA-A9BB-BF97B299BA75}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SorterService.ClassLibrary", "FileListener\SorterService.ClassLibrary.csproj", "{42A83BBD-83E0-4721-9EBF-CFCA6672B1F5}"
 EndProject

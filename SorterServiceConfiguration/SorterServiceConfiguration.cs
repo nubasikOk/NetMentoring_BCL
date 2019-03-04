@@ -1,9 +1,10 @@
 ﻿using System.Configuration;
 
-namespace SorterServiceConfiguration
+namespace SorterService.Configuration
 {
     public class SorterServiceConfiguration : ConfigurationSection
     {
+        public static SorterService.Configuration.SorterServiceConfiguration Configuration => ConfigurationManager.GetSection("SorterService.Configuration") as SorterService.Configuration.SorterServiceConfiguration;
         [ConfigurationProperty("rules")]
         public RuleElementCollection Rules => (RuleElementCollection)base["rules"];
 

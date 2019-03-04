@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace SorterServiceConfiguration
+namespace SorterService.Configuration
 {
     public class RuleElement : ConfigurationElement
     {

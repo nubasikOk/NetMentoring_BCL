@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace FileListener
+namespace SorterService.ClassLibrary
 {
     public interface IDirectoryWorker
     {

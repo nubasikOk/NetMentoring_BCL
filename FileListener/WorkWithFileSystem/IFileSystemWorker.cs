@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FileListener
+namespace SorterService.ClassLibrary
 {
     public interface IFileSystemWorker
     {

@@ -4,17 +4,18 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
-using SorterServiceConfiguration;
+using SorterService.Configuration;
 using FileListener;
+using SorterService.ClassLibrary;
 
-namespace FileSystemSorter.Tests
+namespace SorterService.Tests
 {
     [TestClass]
     public class FileSystemSorterTests
     {
         private IFileSystemWorker fileSystemWorkerMock;
         private IDirectoryWorker directoryWorkerMock;
-        private FileListener.FileListener fileListener;
+        private SorterService.ClassLibrary.FileListener fileListener;
         private List<string> existingDirectoryPaths;
         private List<string> filesToAddNames;
 
@@ -51,7 +52,7 @@ namespace FileSystemSorter.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileListener_ListedDirectoryIsNull_ThrowsException()
         {
-            fileListener= new FileListener.FileListener(null, existingDirectoryPaths[1], fileSystemWorkerMock);
+            fileListener= new SorterService.ClassLibrary.FileListener(null, existingDirectoryPaths[1], fileSystemWorkerMock);
             
         }
 
@@ -60,7 +61,7 @@ namespace FileSystemSorter.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileSystemSorter_DefaultDirectoryIsNull_ThrowsException()
         {
-            fileListener = new FileListener.FileListener(directoryWorkerMock, null, null);
+            fileListener = new SorterService.ClassLibrary.FileListener(directoryWorkerMock, null, null);
         }
 
 
@@ -72,7 +73,7 @@ namespace FileSystemSorter.Tests
             var defaultPath = Path.Combine(directoryToWatchPath, defaultPathToMove);
             var sourcePath = Path.Combine(directoryToWatchPath, filesToAddNames[0]);
 
-            fileListener = new FileListener.FileListener(directoryWorkerMock, defaultPath, fileSystemWorkerMock);
+            fileListener = new SorterService.ClassLibrary.FileListener(directoryWorkerMock, defaultPath, fileSystemWorkerMock);
             fileSystemWorkerMock.Stub(y => y.IsFileExists(sourcePath)).Return(true);
             fileSystemWorkerMock.Stub(x => x.MoveFile(sourcePath, defaultPath));
             directoryWorkerMock.Raise(directoryWorker => directoryWorker.Created += (s, e) => { }, new object(),
@@ -91,7 +92,7 @@ namespace FileSystemSorter.Tests
             var sourcePath = Path.Combine(directoryToWatchPath, filesToAddNames[0]);
             var targetPath = Path.Combine(existingDirectoryPaths[1], filesToAddNames[0]);
             var rules = new Dictionary<Regex, string> { { new Regex("[a-c]"), existingDirectoryPaths[1] } };
-            fileListener = new FileListener.FileListener(directoryWorkerMock, defaultPath, fileSystemWorkerMock)
+            fileListener = new SorterService.ClassLibrary.FileListener(directoryWorkerMock, defaultPath, fileSystemWorkerMock)
             {
                 Rules = rules
             };

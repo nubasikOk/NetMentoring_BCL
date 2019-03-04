@@ -7,19 +7,19 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Text.RegularExpressions;
-using SorterServiceConfiguration;
-
-namespace FileListener
+using SorterService.Configuration;
+using SorterService.ConsoleApp;
+using Config = SorterService.Configuration.SorterServiceConfiguration;
+namespace SorterService.ConsoleApp
 {
     internal class Program
     {
-        private static SorterServiceConfiguration.SorterServiceConfiguration Configuration => 
-            ConfigurationManager.GetSection("SorterServiceConfiguration") as SorterServiceConfiguration.SorterServiceConfiguration;
+      
         internal static void Main(string[] args)
         {
 
             Console.OutputEncoding = Encoding.UTF8;
-            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture(Configuration.Culture.Name);
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture(Config.Configuration.Culture.Name);
 
             var fileSystemSorters = FileSystemInitializer.InitializeFileSystemSorters().ToList();
 

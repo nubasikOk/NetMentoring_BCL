@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EPAM Systems")]
 [assembly: AssemblyProduct("BCL")]
-[assembly: AssemblyCopyright("Copyright © EPAM Systems 2017")]
+[assembly: AssemblyCopyright("Copyright © EPAM Systems 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

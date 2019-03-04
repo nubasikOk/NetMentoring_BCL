@@ -69,9 +69,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BCL_Task\SorterService.Console.csproj">
+    <ProjectReference Include="..\BCL_Task\SorterService.ConsoleApp.csproj">
       <Project>{a31f1840-16cc-45da-a9bb-bf97b299ba75}</Project>
-      <Name>SorterService.Console</Name>
+      <Name>SorterService.ConsoleApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\FileListener\SorterService.ClassLibrary.csproj">
       <Project>{42a83bbd-83e0-4721-9ebf-cfca6672b1f5}</Project>

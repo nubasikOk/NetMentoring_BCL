@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace FileListener
+namespace SorterService.ClassLibrary
 {
     public class FileListener
     {
@@ -46,6 +46,7 @@ namespace FileListener
         {
             RuleNotFound?.Invoke(this, e);
         }
+
         protected virtual void OnCreated(object sender, FileSystemEventArgs e)
         {
             if (!fileSystemWorker.IsFileExists(e.FullPath) || e.Name.Contains("\\"))

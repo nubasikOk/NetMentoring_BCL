@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace FileListener
+namespace SorterService.ClassLibrary
 {
     public class DirectoryWorker:IDirectoryWorker
     {

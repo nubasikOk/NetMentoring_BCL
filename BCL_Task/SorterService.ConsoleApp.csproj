@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A31F1840-16CC-45DA-A9BB-BF97B299BA75}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>BCL_Task</RootNamespace>
-    <AssemblyName>BCL_Task</AssemblyName>
+    <RootNamespace>SorterService.ConsoleApp</RootNamespace>
+    <AssemblyName>SorterService.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -1,5 +1,5 @@
-﻿using FileListener;
-using SorterServiceConfiguration;
+﻿using SorterService.ClassLibrary;
+using SorterService.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,20 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Config = SorterService.Configuration.SorterServiceConfiguration;
 
-namespace FileListener
+namespace SorterService.ConsoleApp
 {
     public static class FileSystemInitializer
     {
 
-        private static SorterServiceConfiguration.SorterServiceConfiguration Configuration => ConfigurationManager.GetSection("SorterServiceConfiguration") as SorterServiceConfiguration.SorterServiceConfiguration;
-        private static string GetFileNameWithoutFolders(string path) => path.Split('\\').Last();
-        private static string GetPathWithoutFile(string path) => path.Substring(0, path.LastIndexOf('\\'));
+       
+        private static string GetFileNameWithoutFolders(string path) => Path.GetFileName(path);
+        private static string GetPathWithoutFile(string path) => Path.GetDirectoryName(path);
 
         private static string GenerateNewFileName(FileRelocationInfo fileRelocationInfo)
         {
             var newFileName = fileRelocationInfo.FileName;
-            if (Configuration.Rules.EnableCreateDateAddition)
+            if (Config.Configuration.Rules.EnableCreateDateAddition)
             {
                 var dateTimeFormat = CultureInfo.CurrentUICulture.DateTimeFormat;
                 var date = DateTime.Now.ToString("G", dateTimeFormat);
@@ -30,7 +31,7 @@ namespace FileListener
                 date = separatorList.Aggregate(date, (current, separator) => current.Replace(separator, '_'));
                 newFileName = $"{date}_{newFileName}";
             }
-            if (!Configuration.Rules.EnableAddFileIndex)
+            if (!Config.Configuration.Rules.EnableAddFileIndex)
             {
                 return newFileName;
             }
@@ -41,22 +42,22 @@ namespace FileListener
             return newFileName;
         }
 
-        public static IEnumerable<FileListener> InitializeFileSystemSorters()
+        public static IEnumerable<SorterService.ClassLibrary.FileListener> InitializeFileSystemSorters()
         {
-            var patternPathDictionary = Configuration.Rules.Cast<RuleElement>()
+            var patternPathDictionary = Config.Configuration.Rules.Cast<RuleElement>()
                 .ToDictionary(rule => new Regex(rule.FileNameRegexPattern), rule => rule.DestinationPath);
 
             var fileSystemProvider = new FileSystemWorker();
 
-            foreach (ListenDirectoryElement directory in Configuration.ListenDirectories)
+            foreach (ListenDirectoryElement directory in Config.Configuration.ListenDirectories)
             {
                 var directoryWatcher = new DirectoryWorker(directory.Path)
                 {
                     IncludeSubdirectories = true
                 };
 
-                var fileSystemSorter = new FileListener(directoryWatcher,
-                    Configuration.DefaultDirectory.Path, fileSystemProvider)
+                var fileSystemSorter = new SorterService.ClassLibrary.FileListener(directoryWatcher,
+                    Config.Configuration.DefaultDirectory.Path, fileSystemProvider)
                 {
                     Rules = patternPathDictionary,
                     GenerateNewFileName = GenerateNewFileName
@@ -66,7 +67,7 @@ namespace FileListener
                 fileSystemSorter.directoryWorker.Created += OnCreated;
                 fileSystemSorter.directoryWorker.Changed += OnChanged;
                 fileSystemSorter.directoryWorker.Deleted += OnDeleted;
-
+                
                 fileSystemSorter.RuleFound += (s, e) =>
                     Console.WriteLine(ResourceManagment.GetString("FileFoundMessage"), e.Rule, e.FileName, e.PathToMove);
                 fileSystemSorter.RuleNotFound += (s, e) =>

@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace SorterServiceConfiguration
+namespace SorterService.Configuration
 {
     [ConfigurationCollection(typeof(RuleElement),AddItemName = "rule")]
     public class RuleElementCollection : ConfigurationElementCollection

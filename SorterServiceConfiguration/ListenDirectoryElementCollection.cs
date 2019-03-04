@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace SorterServiceConfiguration
+namespace SorterService.Configuration
 {
     [ConfigurationCollection(typeof(ListenDirectoryElement), AddItemName = "listenDirectory")]
     public class ListenDirectoryElementCollection : ConfigurationElementCollection
