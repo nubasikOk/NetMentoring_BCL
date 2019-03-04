@@ -60,7 +60,7 @@ namespace FileSystemSorter.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileSystemSorter_DefaultDirectoryIsNull_ThrowsException()
         {
-            fileListener = new FileListener.FileListener(directoryWorkerMock, null, fileSystemWorkerMock);
+            fileListener = new FileListener.FileListener(directoryWorkerMock, null, null);
         }
 
 

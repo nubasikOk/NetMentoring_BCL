@@ -20,7 +20,7 @@ namespace FileListener
         {
             this.directoryWorker = directoryWorker ?? throw new ArgumentNullException();
             this.defaultDestinationDirectoryPath = defaultDestinationDirectoryPath ?? throw new ArgumentNullException();
-            this.fileSystemWorker = fileSystemWorker;
+            this.fileSystemWorker = fileSystemWorker ?? throw new ArgumentNullException();
 
             if (directoryWorker.Path == null)
             {

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCL_Task", "BCL_Task\BCL_Task.csproj", "{A31F1840-16CC-45DA-A9BB-BF97B299BA75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterService.Console", "BCL_Task\SorterService.Console.csproj", "{A31F1840-16CC-45DA-A9BB-BF97B299BA75}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileListener", "FileListener\FileListener.csproj", "{42A83BBD-83E0-4721-9EBF-CFCA6672B1F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SorterService.ClassLibrary", "FileListener\SorterService.ClassLibrary.csproj", "{42A83BBD-83E0-4721-9EBF-CFCA6672B1F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterServiceConfiguration", "SorterServiceConfiguration\SorterServiceConfiguration.csproj", "{1791A3AD-665A-4EB9-B2F6-8AFFE8D48F3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterService.Configuration", "SorterServiceConfiguration\SorterService.Configuration.csproj", "{1791A3AD-665A-4EB9-B2F6-8AFFE8D48F3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileListener.Tests", "FileListener.Tests\FileListener.Tests.csproj", "{924EACF9-6E39-40D7-94DB-B8E35040963C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterService.Tests", "FileListener.Tests\SorterService.Tests.csproj", "{924EACF9-6E39-40D7-94DB-B8E35040963C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -69,17 +69,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BCL_Task\BCL_Task.csproj">
+    <ProjectReference Include="..\BCL_Task\SorterService.Console.csproj">
       <Project>{a31f1840-16cc-45da-a9bb-bf97b299ba75}</Project>
-      <Name>BCL_Task</Name>
+      <Name>SorterService.Console</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FileListener\FileListener.csproj">
+    <ProjectReference Include="..\FileListener\SorterService.ClassLibrary.csproj">
       <Project>{42a83bbd-83e0-4721-9ebf-cfca6672b1f5}</Project>
-      <Name>FileListener</Name>
+      <Name>SorterService.ClassLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SorterServiceConfiguration\SorterServiceConfiguration.csproj">
+    <ProjectReference Include="..\SorterServiceConfiguration\SorterService.Configuration.csproj">
       <Project>{1791a3ad-665a-4eb9-b2f6-8affe8d48f3f}</Project>
-      <Name>SorterServiceConfiguration</Name>
+      <Name>SorterService.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
