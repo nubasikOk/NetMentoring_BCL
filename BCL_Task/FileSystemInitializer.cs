@@ -44,8 +44,7 @@ namespace SorterService.ConsoleApp
 
         public static IEnumerable<SorterService.ClassLibrary.FileListener> InitializeFileSystemSorters()
         {
-            var patternPathDictionary = Config.Configuration.Rules.Cast<RuleElement>()
-                .ToDictionary(rule => new Regex(rule.FileNameRegexPattern), rule => rule.DestinationPath);
+            
 
             var fileSystemProvider = new FileSystemWorker();
 
@@ -59,7 +58,7 @@ namespace SorterService.ConsoleApp
                 var fileSystemSorter = new SorterService.ClassLibrary.FileListener(directoryWatcher,
                     Config.Configuration.DefaultDirectory.Path, fileSystemProvider)
                 {
-                    Rules = patternPathDictionary,
+                    Rules = Config.Configuration.patternPathDictionary,
                     GenerateNewFileName = GenerateNewFileName
                 };
 
