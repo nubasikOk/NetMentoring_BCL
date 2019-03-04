@@ -13,7 +13,8 @@ namespace FileListener
 {
     internal class Program
     {
-        private static SorterServiceConfiguration.SorterServiceConfiguration Configuration => ConfigurationManager.GetSection("SorterServiceConfiguration") as SorterServiceConfiguration.SorterServiceConfiguration;
+        private static SorterServiceConfiguration.SorterServiceConfiguration Configuration => 
+            ConfigurationManager.GetSection("SorterServiceConfiguration") as SorterServiceConfiguration.SorterServiceConfiguration;
         internal static void Main(string[] args)
         {
 
