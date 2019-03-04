@@ -67,7 +67,7 @@ namespace FileSystemSorter.Tests
 
 
         [TestMethod]
-        public void FileListener_Correct_MoveFile()
+        public void FileListener_Correct_MoveFile_With_NoRule()
         {
             var defaultPath = Path.Combine(directoryToWatchPath, defaultPathToMove);
             var sourcePath = Path.Combine(directoryToWatchPath, filesToAddNames[0]);
@@ -76,10 +76,36 @@ namespace FileSystemSorter.Tests
             fileSystemWorkerMock.Stub(y => y.IsFileExists(sourcePath)).Return(true);
             fileSystemWorkerMock.Stub(x => x.MoveFile(sourcePath, defaultPath));
             directoryWorkerMock.Raise(directoryWorker => directoryWorker.Created += (s, e) => { }, new object(),
-                new FileSystemEventArgs(WatcherChangeTypes.Created, directoryToWatchPath, filesToAddNames[0]));
+                new FileSystemEventArgs(WatcherChangeTypes.Created, directoryToWatchPath, filesToAddNames[2]));
 
             fileSystemWorkerMock.Expect(x => x.MoveFile(sourcePath, defaultPath));
             fileListener.RuleNotFound += (s, e) => Assert.AreEqual(defaultPath, e.DefaultPath);
+        }
+
+
+
+        [TestMethod]
+        public void FileListener_Correct_MoveFile_With_Rules()
+        {
+            var defaultPath = Path.Combine(directoryToWatchPath, defaultPathToMove);
+            var sourcePath = Path.Combine(directoryToWatchPath, filesToAddNames[0]);
+            var targetPath = Path.Combine(existingDirectoryPaths[1], filesToAddNames[0]);
+            var rules = new Dictionary<Regex, string> { { new Regex("[a-c]"), existingDirectoryPaths[1] } };
+            fileListener = new FileListener.FileListener(directoryWorkerMock, defaultPath, fileSystemWorkerMock)
+            {
+                Rules = rules
+            };
+
+            fileSystemWorkerMock.Stub(y => y.IsFileExists(sourcePath)).Return(true);
+            directoryWorkerMock.Raise(directoryWatcher => directoryWatcher.Created += (s, e) => { }, new object(),
+                new FileSystemEventArgs(WatcherChangeTypes.Created, directoryToWatchPath, filesToAddNames[0]));
+
+
+            fileSystemWorkerMock.Expect(x => x.MoveFile(sourcePath, targetPath));
+            
+            fileListener.RuleFound += (s, e) => Assert.AreEqual(targetPath, e.PathToMove);
+
+           
         }
     }
 }
