@@ -7,6 +7,8 @@ using Rhino.Mocks;
 using SorterService.Configuration;
 using FileListener;
 using SorterService.ClassLibrary;
+using System.Xml;
+using Config = SorterService.Configuration.SorterServiceConfiguration;
 
 namespace SorterService.Tests
 {
@@ -108,5 +110,9 @@ namespace SorterService.Tests
 
            
         }
+
+
+
+       
     }
 }

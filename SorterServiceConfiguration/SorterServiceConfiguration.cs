@@ -7,13 +7,18 @@ namespace SorterService.Configuration
 {
     public class SorterServiceConfiguration : ConfigurationSection
     {
-        public static SorterServiceConfiguration Configuration =>
-            ConfigurationManager.GetSection("SorterService.Configuration") as SorterServiceConfiguration;
+        public static SorterServiceConfiguration Configuration
+        {
+            get => ConfigurationManager.GetSection("SorterService.Configuration") as SorterServiceConfiguration;
+        }
+
         [ConfigurationProperty("rules")]
-        public  RuleElementCollection Rules => 
+        public RuleElementCollection Rules =>
         (RuleElementCollection)base["rules"];
-        public Dictionary<Regex,string> patternPathDictionary = Configuration.Rules.Cast<RuleElement>()
+        public  Dictionary<Regex, string> patternPathDictionary {
+           get=> Configuration.Rules.Cast<RuleElement>()
                  .ToDictionary(rule => new Regex(rule.FileNameRegexPattern), rule => rule.DestinationPath);
+            }
 
         [ConfigurationProperty("culture")]
         public CultureElement Culture => (CultureElement)this["culture"];

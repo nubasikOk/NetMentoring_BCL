@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Resources;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,9 +15,10 @@ namespace SorterService.ConsoleApp
 {
     internal class Program
     {
-      
+
         internal static void Main(string[] args)
         {
+            
 
             Console.OutputEncoding = Encoding.UTF8;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture(Config.Configuration.Culture.Name);
