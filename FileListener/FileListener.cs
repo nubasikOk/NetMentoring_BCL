@@ -47,9 +47,10 @@ namespace SorterService.ClassLibrary
             RuleNotFound?.Invoke(this, e);
         }
 
+        
         protected virtual void OnCreated(object sender, FileSystemEventArgs e)
         {
-            if (!fileSystemWorker.IsFileExists(e.FullPath) || e.Name.Contains("\\"))
+            if (!fileSystemWorker.IsFileExists(e.FullPath))
             {
                 return;
             }

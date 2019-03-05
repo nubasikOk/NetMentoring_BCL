@@ -4,11 +4,15 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
+using SorterService.ConsoleApp;
 using SorterService.Configuration;
 using FileListener;
 using SorterService.ClassLibrary;
 using System.Xml;
 using Config = SorterService.Configuration.SorterServiceConfiguration;
+using System.Threading;
+using System.Globalization;
+using System.Linq;
 
 namespace SorterService.Tests
 {
@@ -28,6 +32,7 @@ namespace SorterService.Tests
         [TestInitialize]
         public void Init()
         {
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
             fileSystemWorkerMock = MockRepository.GenerateMock<IFileSystemWorker>();
             directoryWorkerMock = MockRepository.GenerateMock<IDirectoryWorker>();
             directoryWorkerMock.Stub(x => x.Path).Return(directoryToWatchPath);
@@ -111,8 +116,15 @@ namespace SorterService.Tests
            
         }
 
+        [TestMethod]
+        public void Application_Localization_correct()
+        {
+
+           Assert.AreEqual(ResourceManagment.GetString("EnableDisableTrackingTip"), "Press key to [E]nable/[D]isable tracking");
 
 
-       
+        }
+
+
     }
 }

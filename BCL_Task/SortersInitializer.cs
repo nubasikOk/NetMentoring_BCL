@@ -13,7 +13,7 @@ using Config = SorterService.Configuration.SorterServiceConfiguration;
 
 namespace SorterService.ConsoleApp
 {
-    public static class FileSystemInitializer
+    public static class SortersInitializer
     {
 
        

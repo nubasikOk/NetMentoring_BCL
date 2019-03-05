@@ -23,7 +23,7 @@ namespace SorterService.ConsoleApp
             Console.OutputEncoding = Encoding.UTF8;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture(Config.Configuration.Culture.Name);
 
-            var fileSystemSorters = FileSystemInitializer.InitializeFileSystemSorters().ToList();
+            var fileSystemSorters = SortersInitializer.InitializeFileSystemSorters().ToList();
 
             Console.WriteLine(ResourceManagment.GetString("EnableDisableTrackingTip"));
             Console.CancelKeyPress += (o, e) => Environment.Exit(0);
