@@ -5,14 +5,9 @@ using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
 using SorterService.ConsoleApp;
-using SorterService.Configuration;
-using FileListener;
 using SorterService.ClassLibrary;
-using System.Xml;
-using Config = SorterService.Configuration.SorterServiceConfiguration;
-using System.Threading;
 using System.Globalization;
-using System.Linq;
+
 
 namespace SorterService.Tests
 {
