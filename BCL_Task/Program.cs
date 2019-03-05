@@ -12,7 +12,7 @@ namespace SorterService.ConsoleApp
         {
             
 
-            Console.OutputEncoding = Encoding.UTF8;
+            //Console.OutputEncoding = Encoding.UTF8;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture(Config.Configuration.Culture.Name);
 
             var fileSystemSorters = SortersInitializer.InitializeFileSystemSorters().ToList();
@@ -38,11 +38,5 @@ namespace SorterService.ConsoleApp
                 }
             }
         }
-
-
-       
-
-       
-
     }
 }

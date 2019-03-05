@@ -13,8 +13,8 @@ namespace SorterService.Configuration
         }
 
         [ConfigurationProperty("rules")]
-        public RuleElementCollection Rules =>
-        (RuleElementCollection)base["rules"];
+        public RuleElementCollection Rules => (RuleElementCollection)base["rules"];
+
         public  Dictionary<Regex, string> patternPathDictionary {
            get=> Configuration.Rules.Cast<RuleElement>()
                  .ToDictionary(rule => new Regex(rule.FileNameRegexPattern), rule => rule.DestinationPath);

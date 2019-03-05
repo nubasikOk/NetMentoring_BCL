@@ -24,13 +24,13 @@ namespace SorterService.ClassLibrary
                 date = separatorList.Aggregate(date, (current, separator) => current.Replace(separator, '_'));
                 newFileName = $"{date}_{newFileName}";
             }
-            if (!Config.Configuration.Rules.EnableAddFileIndex)
+            if (Config.Configuration.Rules.EnableAddFileIndex)
             {
-                return newFileName;
+                var fileCount = Directory.GetFiles(fileRelocationInfo.DestinationPath).Length;
+                newFileName = $"{++fileCount}_{newFileName}";
             }
 
-            var fileCount = Directory.GetFiles(fileRelocationInfo.DestinationPath).Length;
-            newFileName = $"{++fileCount}_{newFileName}";
+            
 
             return newFileName;
         }

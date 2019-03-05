@@ -27,7 +27,7 @@ namespace SorterService.Tests
         [TestInitialize]
         public void Init()
         {
-            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
+            
             fileSystemWorkerMock = MockRepository.GenerateMock<IFileSystemWorker>();
             directoryWorkerMock = MockRepository.GenerateMock<IDirectoryWorker>();
             directoryWorkerMock.Stub(x => x.Path).Return(directoryToWatchPath);
@@ -107,19 +107,35 @@ namespace SorterService.Tests
             fileSystemWorkerMock.Expect(x => x.MoveFile(sourcePath, targetPath));
             
             fileListener.RuleFound += (s, e) => Assert.AreEqual(targetPath, e.PathToMove);
-
-           
         }
 
         [TestMethod]
-        public void Application_Localization_correct()
+        public void Application_LocalizationRu_correct()
         {
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture("ru-RU");
+            Assert.AreEqual(ResourceManagment.GetString("EnableDisableTrackingTip"), "Нажмите клавишу для зап[У]ска/остано[В]ки отслеживания каталога:");
+        }
 
-           Assert.AreEqual(ResourceManagment.GetString("EnableDisableTrackingTip"), "Press key to [E]nable/[D]isable tracking");
+        [TestMethod]
+        public void Application_LocalizationEN_correct()
+        {
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
+            Assert.AreEqual(ResourceManagment.GetString("EnableDisableTrackingTip"), "Press key to [E]nable/[D]isable tracking");
+        }
 
-
+        [TestMethod]
+        public void Application_Localization_NoResource_correct()
+        {
+            Assert.AreEqual(ResourceManagment.GetString("123"), null);
         }
 
 
+
+        [TestMethod]
+        public void Application_Localization_If_UnknownCulture_Then_DefaultCulture_Using_correct()
+        {
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CreateSpecificCulture("ja-JP");
+            Assert.AreEqual(ResourceManagment.GetString("EnableDisableTrackingTip"), "Press key to [E]nable/[D]isable tracking");
+        }
     }
 }
